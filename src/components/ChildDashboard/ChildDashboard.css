@@ -6,7 +6,9 @@
 #heading{
     color: rgb(199, 204, 159);
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 #info{

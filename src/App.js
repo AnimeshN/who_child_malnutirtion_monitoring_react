@@ -3,7 +3,7 @@ import './App.css';
 import {ChildDashboard} from './components/ChildDashboard/ChildDashboard';
 import {DashBoard} from './components/dashboard'
 import axios from 'axios';
-import { Typography } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 
 
 const App = () => {
@@ -91,6 +91,10 @@ const App = () => {
             <Typography variant="h3" component="h2">
             CHILD HEALTH MONITORING DASHBOARD
             </Typography>
+
+            <Typography variant="h6" component="h2">
+                Using WHO child growth standards
+            </Typography>
         </div>
     <DashBoard awc_id={awc_id} />
     </>)
@@ -102,7 +106,11 @@ const App = () => {
       <>
       <div id='heading'>
             <Typography variant="h3" component="h2">
-            CHILD HEALTH MONITORING DASHBOARD
+              CHILD HEALTH MONITORING DASHBOARD
+            </Typography>
+            <Divider/>
+            <Typography variant="h6" component="h2">
+                Using WHO child growth standards
             </Typography>
         </div>
         
