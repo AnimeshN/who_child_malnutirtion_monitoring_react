@@ -32,8 +32,8 @@ const App = () => {
 
 
 
-  const domain = 'http://localhost:3000';
-  // const domain = 'https://tracker.communitygis.net'
+  // const domain = 'http://localhost:3000';
+  const domain = 'https://tracker.communitygis.net'
 
   useEffect(() => {
     // length for age
@@ -56,9 +56,11 @@ const App = () => {
     const request8 = axios.get(`${domain}/api/indicators/wfh/girl/0`);
     const request9 = axios.get(`${domain}/api/indicators/wfh/girl/1`);
     
+    const request10 = axios.get(`${domain}/api/indicators/wfh/boy/0`);
+    const request11 = axios.get(`${domain}/api/indicators/wfh/boy/1`);
+    
 
-
-    axios.all([request1, request2,request3,request4,request5,request6,request7,request8,request9]).then(axios.spread((...resp) => {
+    axios.all([request1, request2,request3,request4,request5,request6,request7,request8,request9,request10,request11]).then(axios.spread((...resp) => {
 
       setAllWHOZScore({'lfaG0':resp[0].data,
                     'lfaG1':resp[1].data,
@@ -68,7 +70,10 @@ const App = () => {
                     'wfaB':resp[5].data,
                     'status':resp[6].data,
                     'wfhG0':resp[7].data,
-                    'wfhG1':resp[8].data})
+                    'wfhG1':resp[8].data,
+                    'wfhB0':resp[9].data,
+                    'wfhB1':resp[10].data
+                  })
 
       // use/access the results 
     })).catch(errors => {
@@ -100,6 +105,7 @@ const App = () => {
             CHILD HEALTH MONITORING DASHBOARD
             </Typography>
         </div>
+        
     <ChildDashboard data={childData} whoZScore={allWHOZScore}/>
     </>)
   

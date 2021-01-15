@@ -5,7 +5,8 @@ import {Infobox} from './InfoBox/InfoBox';
 import {LineChart} from './LineChart/LineChart';
 import {Status} from './Status/Status';
 
-export const ChildDashboard = ({data,whoZScore}) =>{
+export const ChildDashboard = ({data,whoZScore,status}) =>{
+    console.log(whoZScore)
 
     const child_age = data[0].age;
     const child_gender = data[0].gender;
@@ -13,27 +14,48 @@ export const ChildDashboard = ({data,whoZScore}) =>{
     let whoUnderweightScores;
     let whoWastingScores;
 
-    console.log(whoZScore)
-
+    let headingUnderweight;
+    let headingStunting;
+    let headingWasting;
 
     if(child_gender === "Girl"){
         whoUnderweightScores = whoZScore.wfaG;
+        headingUnderweight = "Weight for Age(Girl) 0-59 Month";
         if(child_age < 24){
             whoStuntingScores = whoZScore.lfaG0;
+            headingStunting = "Length for Age(Girl): 0-23 Month";
+
             whoWastingScores = whoZScore.wfhG0;
+            headingWasting = "Weight for Length(Girl): 0-23 Month ";
+
         }else{
             whoStuntingScores = whoZScore.lfaG1;
+            headingStunting = "Height for Age(Girl): 24-59 Month";
+
             whoWastingScores = whoZScore.wfhG1;
+            headingWasting = "Weigth for Height(Girl): 24-59 Month";
+
         }
     }else{
         whoUnderweightScores = whoZScore.wfaB;
+        headingUnderweight = "Weight for Age(Boy) 0-59 Month";
+
         if(child_age < 24){
+
             whoStuntingScores = whoZScore.lfaB0;
-            whoWastingScores = whoZScore.wfhG0; // convert it to boy
+            headingStunting = "Length for Age(Boy): 0-23 Month";
+
+            whoWastingScores = whoZScore.wfhB0; 
+            headingWasting = "Weight for Length(Boy): 0-23 Month ";
+
 
         }else{
             whoStuntingScores = whoZScore.lfaB1;
-            whoWastingScores = whoZScore.wfhG0; // convert it to boy
+            headingStunting = "Height for Age(Boy): 24-59 Month";
+
+            whoWastingScores = whoZScore.wfhB1; 
+            headingWasting = "Weight for Height(Boy): 24-59 Month ";
+
 
         }
     }
@@ -117,14 +139,14 @@ export const ChildDashboard = ({data,whoZScore}) =>{
             <Infobox type="Age(in month)" value={data[data.length - 1].age}/>
         </div>
         <div id='chart'>
-            <LineChart heading="Stunting" xaxis='Age(month)' yaxis='height/length(cm)' childData={heightData} whoZScore={whoStuntingScores}/>
-            <Status status={whoZScore.status.isStunted}/>
+            <LineChart type="Stunting" heading={headingStunting} xaxis='Age(month)' yaxis='height/length(cm)' childData={heightData} whoZScore={whoStuntingScores}/>
+            {/* <Status status={status.isStunted}/> */}
 
-            <LineChart heading="Underweight" xaxis='Age(month)' yaxis='Weight(Kg)' childData={weightData} whoZScore={whoUnderweightScores}/>
-            <Status status={'Moderate'}/>
+            <LineChart type="Underweight" heading={headingUnderweight} xaxis='Age(month)' yaxis='Weight(Kg)' childData={weightData} whoZScore={whoUnderweightScores}/>
+            {/* <Status status={'Moderate'}/> */}
 
-            <LineChart heading="Wasting" xaxis='Height(cm)' yaxis='Weight(in Kg)' childData={stuntingData} whoZScore={whoWastingScores}/>
-            <Status status={'SAM'}/>
+            <LineChart type="Wasting" heading={headingWasting} xaxis='Height(cm)' yaxis='Weight(in Kg)' childData={stuntingData} whoZScore={whoWastingScores}/>
+            {/* <Status status={'SAM'}/> */}
 
         </div>
         <div id='status'>

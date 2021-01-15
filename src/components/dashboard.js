@@ -35,6 +35,53 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
       setDropdownOpt(Object.keys(awcData));
     }, [awcData])
 
+
+    useEffect(() => {
+      // length for age
+      const request1 = axios.get(`${domain}/api/indicators/lfa/girl/0`);
+      const request2 = axios.get(`${domain}/api/indicators/lfa/girl/1`);
+      const request3 = axios.get(`${domain}/api/indicators/lfa/boy/0`);
+      const request4 = axios.get(`${domain}/api/indicators/lfa/boy/1`);
+      
+  
+  
+      // weight for age
+      const request5 = axios.get(`${domain}/api/indicators/wfa/girl`);
+      const request6 = axios.get(`${domain}/api/indicators/wfa/boy`);
+  
+  
+      const request7 = axios.get(`${domain}/api/child/status/${childID}`);
+  
+      // weight for length
+  
+      const request8 = axios.get(`${domain}/api/indicators/wfh/girl/0`);
+      const request9 = axios.get(`${domain}/api/indicators/wfh/girl/1`);
+      const request10 = axios.get(`${domain}/api/indicators/wfh/boy/0`);
+      const request11 = axios.get(`${domain}/api/indicators/wfh/boy/1`);
+      
+  
+      axios.all([request1, request2,request3,request4,request5,request6,request7,request8,request9,request10,request11]).then(axios.spread((...resp) => {
+  
+        setAllWHOZScore({'lfaG0':resp[0].data,
+                      'lfaG1':resp[1].data,
+                      'lfaB0':resp[2].data,
+                      'lfaB1':resp[3].data,
+                      'wfaG':resp[4].data,
+                      'wfaB':resp[5].data,
+                      'status':resp[6].data,
+                      'wfhG0':resp[7].data,
+                      'wfhG1':resp[8].data,
+                      'wfhB0':resp[9].data,
+                      'wfhB1':resp[10].data
+                    })
+  
+        // use/access the results 
+      })).catch(errors => {
+        // react on errors.
+      })
+  
+    }, [])
+
     useEffect(() => {
       const URL = `https://tracker.communitygis.net/api/child/id/${childID}`;
   
@@ -46,56 +93,28 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
 
     
 
-      axios.get(`${domain}/api/child/status/${childID}`,{}).then((response) => {
-          setAllWHOZScore({...allWHOZScore,'status':response.data});
-            }).catch(function getDataError(e){
-              console.log('Failed to load Anganwadi Data', e);
-            });
+      
                  
            
   
     }, [childID])
+
+    const [status,setStatus] = useState(null);
+    useEffect(() => {
+      axios.get(`${domain}/api/child/status/${childID}`,{}).then((response) => {
+        setStatus(response.data);
+          }).catch(function getDataError(e){
+            console.log('Failed to load Anganwadi Data', e);
+          });
+  
+    }, [childID])
+    
+    console.log(status)
+
     const domain = 'http://localhost:3000';
   // const domain = 'https://tracker.communitygis.net'
 
-  useEffect(() => {
-    // length for age
-    const request1 = axios.get(`${domain}/api/indicators/lfa/girl/0`);
-    const request2 = axios.get(`${domain}/api/indicators/lfa/girl/1`);
-    const request3 = axios.get(`${domain}/api/indicators/lfa/boy/0`);
-    const request4 = axios.get(`${domain}/api/indicators/lfa/boy/1`);
-    
-
-
-    // weight for age
-    const request5 = axios.get(`${domain}/api/indicators/wfa/girl`);
-    const request6 = axios.get(`${domain}/api/indicators/wfa/boy`);
-
-
-    const request7 = axios.get(`${domain}/api/child/status/${childID}`);
-
-    // weight for length
-
-    const request8 = axios.get(`${domain}/api/indicators/wfh/girl/0`);
-    const request9 = axios.get(`${domain}/api/indicators/wfh/girl/1`);
-    axios.all([request1, request2,request3,request4,request5,request6,request7,request8,request9]).then(axios.spread((...resp) => {
-
-      setAllWHOZScore({'lfaG0':resp[0].data,
-                    'lfaG1':resp[1].data,
-                    'lfaB0':resp[2].data,
-                    'lfaB1':resp[3].data,
-                    'wfaG':resp[4].data,
-                    'wfaB':resp[5].data,
-                    'status':resp[6].data,
-                    'wfhG0':resp[7].data,
-                    'wfhG1':resp[8].data})
-
-      // use/access the results 
-    })).catch(errors => {
-      // react on errors.
-    })
-
-  }, [])
+  
 
 
     useEffect(() => {
@@ -112,7 +131,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
     
   
     
-    if(!awcData || !dropdownOpt || !allWHOZScore)
+    if(!awcData || !dropdownOpt || !allWHOZScore || !status)
     return <pre></pre>
     return (<div style={{width:'100%',height:'100%'}}>
       
@@ -138,7 +157,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
           </FormControl>
       </div>
       
-      <ChildDashboard data={childData} whoZScore={allWHOZScore}/>
+      <ChildDashboard data={childData} whoZScore={allWHOZScore} status={status}/>
     </div>)
   }
 // export const  DashBoard extends React.Component {

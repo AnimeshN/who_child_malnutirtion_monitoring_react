@@ -2,19 +2,20 @@ import React,{} from 'react'
 import {Line} from 'react-chartjs-2';
 import './LineChart.css';
 
-export const LineChart = ({heading,xaxis,yaxis,childData,whoZScore}) => {
+export const LineChart = ({type,heading,xaxis,yaxis,childData,whoZScore}) => {
   let labels;  
   let stepSize;
   let height = [];
   const {minus_three_sd,median,minus_two_sd,plus_three_sd,plus_two_sd}  = whoZScore;
-  if(heading === 'Stunting'){
+  if(type === 'Stunting'){
     labels = whoZScore.month
     stepSize=10
-    }else if(heading === 'Underweight'){
+    }else if(type === 'Underweight'){
     labels = whoZScore.month
     stepSize=2
     }else{
       labels = whoZScore.xaxis;
+      stepSize=2
     }
     const data= {
         labels: labels,
