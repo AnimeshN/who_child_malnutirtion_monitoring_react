@@ -32,8 +32,8 @@ const App = () => {
 
 
 
-  // const domain = 'http://localhost:3000';
-  const domain = 'https://tracker.communitygis.net'
+  const domain = 'http://localhost:3000';
+  // const domain = 'https://tracker.communitygis.net'
 
   useEffect(() => {
     // length for age
@@ -88,11 +88,11 @@ const App = () => {
     return (
       <>
       <div id='heading'>
-            <Typography variant="h3" component="h2">
+            <Typography variant="h3" component="h2" style={{color:"black"}}>
             CHILD HEALTH MONITORING DASHBOARD
             </Typography>
 
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2" style={{color:"black"}}>
                 Using WHO child growth standards
             </Typography>
         </div>

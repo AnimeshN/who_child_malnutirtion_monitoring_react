@@ -7,7 +7,7 @@ export const Infobox = ({type,value}) => {
     return (
     <Card className='card' >
       <CardContent>
-        <Typography  color="textSecondary" gutterBottom>
+        <Typography  color="textPrimary" gutterBottom>
           {type}
         </Typography>
        

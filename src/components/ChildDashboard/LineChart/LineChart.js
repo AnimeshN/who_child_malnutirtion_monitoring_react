@@ -77,7 +77,7 @@ export const LineChart = ({type,heading,xaxis,yaxis,childData,whoZScore}) => {
             fontSize:20,
             // fontWeight: 1,
             lineHeight: 1.5,
-            fontColor: "rgba(0, 0, 0, 0.54)",
+            fontColor: "rgba(0, 0, 0)",
             fontStyle:'normal',
             padding:20
           },
