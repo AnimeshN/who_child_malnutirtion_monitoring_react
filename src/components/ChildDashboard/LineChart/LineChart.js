@@ -22,11 +22,11 @@ export const LineChart = ({type,heading,xaxis,yaxis,childData,whoZScore}) => {
         datasets: [
           {
             label: 'child',
-            fill: false,
+            fill: true,
 
             data: childData,
             borderColor: 'red',
-            borderWidth: 1
+            borderWidth: 3
         },
         {
             label: '-3SD',
