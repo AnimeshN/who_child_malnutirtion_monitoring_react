@@ -33,7 +33,7 @@ const App = () => {
 
 
 
-  const domain = 'http://localhost:3000';
+  const domain = 'https://tracker.communitygis.net';
   // const domain = 'https://tracker.communitygis.net'
 
   useEffect(() => {

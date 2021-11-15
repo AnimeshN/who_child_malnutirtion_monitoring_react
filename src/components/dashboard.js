@@ -81,7 +81,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
 
     useEffect(() => {
       if(childID){
-        const URL = `http://localhost:3000/api/child/id/${childID}`;
+        const URL = `https://tracker.communitygis.net/api/child/id/${childID}`;
   
         axios.get(URL,{}).then((response) => {
             setChildData(response.data);
@@ -104,14 +104,14 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
     
     // console.log("status",status)
 
-    const domain = 'http://localhost:3000';
+    const domain = 'https://tracker.communitygis.net';
   // const domain = 'https://tracker.communitygis.net'
 
   
 
 
     useEffect(() => {
-      const URL = `http://localhost:3000/api/awc/${sector}/${category}`;
+      const URL = `https://tracker.communitygis.net/api/awc/${sector}/${category}`;
   
       axios.get(URL,{}).then((response) => {
           let data = response.data;
@@ -154,7 +154,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
           </FormControl>
       </div>
       
-      <ChildDashboard data={childDat  a} whoZScore={allWHOZScore}/>
+      <ChildDashboard data={childData} whoZScore={allWHOZScore}/>
     </div>)
   }
 // export const  DashBoard extends React.Component {
