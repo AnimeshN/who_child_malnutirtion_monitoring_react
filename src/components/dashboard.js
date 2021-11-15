@@ -11,8 +11,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
 
     
 
-  export const DashBoard = ({sector}) =>{
-
+  export const DashBoard = ({sector,category}) =>{
     const [awcData, setAWCData] = useState(null);
 
     const [childID, setChildID] = useState('2133531');
@@ -116,17 +115,17 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
 
 
     useEffect(() => {
-      const URL = `http://localhost:3000/api/awc/${sector}`;
+      const URL = `http://localhost:3000/api/awc/${sector}/${category}`;
   
       axios.get(URL,{}).then((response) => {
-          // console.log(response.data)
+          console.log("data",response.data)
           setAWCData(response.data);
             }).catch(function getDataError(e){
               console.log('Failed to load Anganwadi Data', e);
             });
            
   
-    }, [sector])
+    }, [sector,category])
     
   
     
