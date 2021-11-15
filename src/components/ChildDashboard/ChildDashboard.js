@@ -133,8 +133,8 @@ export const ChildDashboard = ({data,whoZScore,status}) =>{
     <div id= 'child-tracking'>
       
         <div id='info'>
-            <Infobox type="Child ID" value={data[0].child_id} />
-            <Infobox type="AWC ID" value={data[0].awc_id} />
+            <Infobox type="Beneficiary id" value={data[0].child_id} />
+            <Infobox type="Sector Name" value={data[0].sector_name} />
             <Infobox type="Gender" value={data[0].gender} />
             <Infobox type="Age(in month)" value={data[data.length - 1].age}/>
         </div>
