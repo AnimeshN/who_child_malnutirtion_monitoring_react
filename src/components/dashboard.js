@@ -14,7 +14,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
   export const DashBoard = ({sector,category}) =>{
     const [awcData, setAWCData] = useState(null);
 
-    const [childID, setChildID] = useState('2133531');
+    const [childID, setChildID] = useState(null);
 
     const [childData, setChildData] = useState(null);
 
@@ -80,20 +80,16 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
     }, [])
 
     useEffect(() => {
-      const URL = `http://localhost:3000/api/child/id/${childID}`;
+      if(childID){
+        const URL = `http://localhost:3000/api/child/id/${childID}`;
   
-      axios.get(URL,{}).then((response) => {
-          setChildData(response.data);
-            }).catch(function getDataError(e){
-              console.log('Failed to load Anganwadi Data', e);
-            });
-
-    
-
-      
-                 
-           
-  
+        axios.get(URL,{}).then((response) => {
+            setChildData(response.data);
+              }).catch(function getDataError(e){
+                console.log('Failed to load Anganwadi Data', e);
+              });
+      }
+ 
     }, [childID])
 
     // const [status,setStatus] = useState(null);
@@ -118,8 +114,10 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
       const URL = `http://localhost:3000/api/awc/${sector}/${category}`;
   
       axios.get(URL,{}).then((response) => {
-          console.log("data",response.data)
+          let data = response.data;
+          let child_id = Object.keys(data)[0]
           setAWCData(response.data);
+          setChildID(child_id)
             }).catch(function getDataError(e){
               console.log('Failed to load Anganwadi Data', e);
             });
@@ -128,8 +126,9 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
     }, [sector,category])
     
   
+    console.log("chhhh",childID)
     
-    if(!awcData || !dropdownOpt || !allWHOZScore)
+    if(!awcData || !dropdownOpt || !allWHOZScore || !childData)
     return <pre></pre>
     return (<div style={{width:'100%',height:'100%'}}>
       
@@ -155,7 +154,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
           </FormControl>
       </div>
       
-      <ChildDashboard data={childData} whoZScore={allWHOZScore}/>
+      <ChildDashboard data={childDat  a} whoZScore={allWHOZScore}/>
     </div>)
   }
 // export const  DashBoard extends React.Component {
