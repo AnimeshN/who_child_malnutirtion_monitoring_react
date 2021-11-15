@@ -13,7 +13,7 @@ const App = () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const id = urlParams.get('child_id');
-  const awc_id = urlParams.get('awc_id');
+  const sector = urlParams.get('sector');
   
   const [allWHOZScore,setAllWHOZScore] = useState(null);
 
@@ -84,7 +84,7 @@ const App = () => {
 
   
  
-  if(awc_id){
+  if(sector){
     return (
       <>
       <div id='heading'>
@@ -96,7 +96,7 @@ const App = () => {
                 Using WHO child growth standards
             </Typography>
         </div>
-    <DashBoard awc_id={awc_id} />
+    <DashBoard sector={sector} />
     </>)
   }
   if(!childData || !allWHOZScore)
@@ -123,7 +123,7 @@ const App = () => {
   //   childId1: [
   //     {
   //       "age": 11,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "cc815622-4e81-4d91-b96b-312e33a6983e",
   //       "gender": "Girl",
   //       "height": 73,
@@ -132,7 +132,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 12,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -141,7 +141,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 13,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -150,7 +150,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 14,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -159,7 +159,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 15,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -168,7 +168,7 @@ const App = () => {
   //     },
   //     {
   //       "age":  15,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -177,7 +177,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 16,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -186,7 +186,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 17,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -195,7 +195,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 18,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -204,7 +204,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 19,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -213,7 +213,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 20,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -222,7 +222,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 21,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -233,7 +233,7 @@ const App = () => {
   //   childId2: [
   //     {
   //       "age": 11,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "cc815622-4e81-4d91-b96b-312e33a6983e",
   //       "gender": "Girl",
   //       "height": 73,
@@ -242,7 +242,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 12,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -251,7 +251,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 13,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -260,7 +260,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 14,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -269,7 +269,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 15,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -278,7 +278,7 @@ const App = () => {
   //     },
   //     {
   //       "age":  15,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -287,7 +287,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 16,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -296,7 +296,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 17,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -305,7 +305,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 18,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -314,7 +314,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 19,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -323,7 +323,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 20,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,
@@ -332,7 +332,7 @@ const App = () => {
   //     },
   //     {
   //       "age": 21,
-  //       "awc_id": "4c051f983ece4078a666c6f0127acbc3",
+  //       "sector": "4c051f983ece4078a666c6f0127acbc3",
   //       "child_id": "33e35ecb-9303-4c8b-9190-26e274782843",
   //       "gender": "Girl",
   //       "height": 86,

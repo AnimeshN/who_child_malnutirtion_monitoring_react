@@ -11,11 +11,11 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
 
     
 
-  export const DashBoard = ({awc_id}) =>{
+  export const DashBoard = ({sector}) =>{
 
     const [awcData, setAWCData] = useState(null);
 
-    const [childID, setChildID] = useState('e9ae937d-39d3-4b91-b53d-895b0bfb6dde');
+    const [childID, setChildID] = useState('2133531');
 
     const [childData, setChildData] = useState(null);
 
@@ -28,7 +28,6 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
       setChildID(event.target.value);
     };
 
-    console.log(childID)
 
     useEffect(() => {
       if(awcData)
@@ -50,7 +49,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
       const request6 = axios.get(`${domain}/api/indicators/wfa/boy`);
   
   
-      const request7 = axios.get(`${domain}/api/child/status/${childID}`);
+      // const request7 = axios.get(`${domain}/api/child/status/${childID}`);
   
       // weight for length
   
@@ -60,7 +59,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
       const request11 = axios.get(`${domain}/api/indicators/wfh/boy/1`);
       
   
-      axios.all([request1, request2,request3,request4,request5,request6,request7,request8,request9,request10,request11]).then(axios.spread((...resp) => {
+      axios.all([request1, request2,request3,request4,request5,request6,request8,request9,request10,request11]).then(axios.spread((...resp) => {
   
         setAllWHOZScore({'lfaG0':resp[0].data,
                       'lfaG1':resp[1].data,
@@ -68,11 +67,10 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
                       'lfaB1':resp[3].data,
                       'wfaG':resp[4].data,
                       'wfaB':resp[5].data,
-                      'status':resp[6].data,
-                      'wfhG0':resp[7].data,
-                      'wfhG1':resp[8].data,
-                      'wfhB0':resp[9].data,
-                      'wfhB1':resp[10].data
+                      'wfhG0':resp[6].data,
+                      'wfhG1':resp[7].data,
+                      'wfhB0':resp[8].data,
+                      'wfhB1':resp[9].data
                     })
   
         // use/access the results 
@@ -83,7 +81,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
     }, [])
 
     useEffect(() => {
-      const URL = `https://tracker.communitygis.net/api/child/id/${childID}`;
+      const URL = `http://localhost:3000/api/child/id/${childID}`;
   
       axios.get(URL,{}).then((response) => {
           setChildData(response.data);
@@ -99,17 +97,17 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
   
     }, [childID])
 
-    const [status,setStatus] = useState(null);
-    useEffect(() => {
-      axios.get(`${domain}/api/child/status/${childID}`,{}).then((response) => {
-        setStatus(response.data);
-          }).catch(function getDataError(e){
-            console.log('Failed to load Anganwadi Data', e);
-          });
+    // const [status,setStatus] = useState(null);
+    // useEffect(() => {
+    //   axios.get(`${domain}/api/child/status/${childID}`,{}).then((response) => {
+    //     setStatus(response.data);
+    //       }).catch(function getDataError(e){
+    //         console.log('Failed to load Anganwadi Data', e);
+    //       });
   
-    }, [childID])
+    // }, [childID])
     
-    console.log(status)
+    // console.log("status",status)
 
     const domain = 'http://localhost:3000';
   // const domain = 'https://tracker.communitygis.net'
@@ -118,27 +116,28 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
 
 
     useEffect(() => {
-      const URL = `https://tracker.communitygis.net/api/awc/${awc_id}`;
+      const URL = `http://localhost:3000/api/awc/${sector}`;
   
       axios.get(URL,{}).then((response) => {
+          // console.log(response.data)
           setAWCData(response.data);
             }).catch(function getDataError(e){
               console.log('Failed to load Anganwadi Data', e);
             });
            
   
-    }, [awc_id])
+    }, [sector])
     
   
     
-    if(!awcData || !dropdownOpt || !allWHOZScore || !status)
+    if(!awcData || !dropdownOpt || !allWHOZScore)
     return <pre></pre>
     return (<div style={{width:'100%',height:'100%'}}>
       
       <div style={{display:'flex', gap:50,justifyContent:'center',marginTop:50, marginLeft:200,alignItem:"center"}}>
 
       {/* <Typography variant="subtitle1" component="h2">
-                Aganwadi Center ID: {awc_id}
+                Aganwadi Center ID: {sector}
       </Typography> */}
 
 
@@ -157,7 +156,7 @@ import { FormControl, InputLabel,Select,MenuItem ,Typography} from '@material-ui
           </FormControl>
       </div>
       
-      <ChildDashboard data={childData} whoZScore={allWHOZScore} status={status}/>
+      <ChildDashboard data={childData} whoZScore={allWHOZScore}/>
     </div>)
   }
 // export const  DashBoard extends React.Component {
