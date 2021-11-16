@@ -136,15 +136,15 @@ export const ChildDashboard = ({data,whoZScore,status}) =>{
             <Infobox type="District" value={data[0].district}/>
             <Infobox type="Project" value={data[0].taluka}/>
             <Infobox type="Sector Name" value={data[0].sector_name} />
-            <Infobox type="Beneficiary ID" value={data[0].child_id} />
+            {/* <Infobox type="Beneficiary ID" value={data[0].child_id} /> */}
             <Infobox type="Gender" value={data[0].gender} />
             <Infobox type="Age(in month)" value={data[data.length - 1].age}/>
         </div>
         <div id='chart'>
-            <LineChart type="Stunting" heading={headingStunting} xaxis='Age(month)' yaxis='height/length(cm)' childData={heightData} whoZScore={whoStuntingScores}/>
+            {/* <LineChart type="Stunting" heading={headingStunting} xaxis='Age(month)' yaxis='height/length(cm)' childData={heightData} whoZScore={whoStuntingScores}/> */}
             {/* <Status status={status.isStunted}/> */}
 
-            <LineChart type="Underweight" heading={headingUnderweight} xaxis='Age(month)' yaxis='Weight(Kg)' childData={weightData} whoZScore={whoUnderweightScores}/>
+            {/* <LineChart type="Underweight" heading={headingUnderweight} xaxis='Age(month)' yaxis='Weight(Kg)' childData={weightData} whoZScore={whoUnderweightScores}/> */}
             {/* <Status status={'Moderate'}/> */}
 
             <LineChart type="Wasting" heading={headingWasting} xaxis='Height(cm)' yaxis='Weight(in Kg)' childData={stuntingData} whoZScore={whoWastingScores}/>
